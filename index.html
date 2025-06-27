@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizons – Student Wellness App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e8f0fe;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #003366;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      background-color: #4b9cd3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #357ab8;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 90%;
+      margin: 5px 0;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      background: white;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌈 Horizons – Your Mental Wellness Space</h1>
+  <p>Welcome to Horizons! Track your mood, check in, chat with peers, and get support. You’re not alone 💙</p>
+
+  <!-- Mood Tracker -->
+  <div class="section">
+    <h2>How are you feeling today?</h2>
+    <div>
+      <button onclick="trackMood('😊 Happy')">😊 Happy</button>
+      <button onclick="trackMood('😐 Okay')">😐 Okay</button>
+      <button onclick="trackMood('😔 Sad')">😔 Sad</button>
+      <button onclick="trackMood('😡 Angry')">😡 Angry</button>
+    </div>
+    <ul id="moodLog"></ul>
+  </div>
+
+  <!-- Daily Check-In -->
+  <div class="section">
+    <h2>Daily Check-In</h2>
+    <form onsubmit="submitCheckIn(event)">
+      <label>What made you smile today?</label><br>
+      <input type="text" id="smile" required><br><br>
+      <label>One thing you want to improve tomorrow?</label><br>
+      <input type="text" id="improve" required><br><br>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="checkInResult"></div>
+  </div>
+
+  <!-- Peer Chat (Demo) -->
+  <div class="section">
+    <h2>Anonymous Peer Chat (Demo)</h2>
+    <input type="text" id="chatInput" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+    <ul id="chatBox"></ul>
+  </div>
+
+  <!-- Helpline Support -->
+  <div class="section">
+    <h2>📞 Helpline Support</h2>
+    <ul>
+      <li><b>iCall (TISS):</b> 9152987821 (9am – 9pm)</li>
+      <li><b>AASRA:</b> 91-9820466726 (24x7)</li>
+      <li><b>Fortis Mental Health:</b> +91-8376804102</li>
+    </ul>
+  </div>
+
+  <!-- Resources -->
+  <div class="section">
+    <h2>📚 Wellness Resources</h2>
+    <ul>
+      <li><a href="https://youtu.be/4QmQeFAVT3I" target="_blank">Mindfulness for Students (YouTube)</a></li>
+      <li><a href="https://www.childlineindia.org/" target="_blank">Childline India – Help for Youth</a></li>
+      <li><a href="https://www.headspace.com/" target="_blank">Headspace – Meditation App</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // Mood Tracker Logic
+    function trackMood(mood) {
+      const log = document.getElementById("moodLog");
+      const entry = document.createElement("li");
+      const now = new Date().toLocaleString();
+      entry.textContent = `${now}: ${mood}`;
+      log.appendChild(entry);
+    }
+
+    // Check-in Logic
+    function submitCheckIn(event) {
+      event.preventDefault();
+      const smile = document.getElementById("smile").value;
+      const improve = document.getElementById("improve").value;
+      document.getElementById("checkInResult").innerHTML = `
+        <p>✅ Your check-in is saved!</p>
+        <p><b>Smile:</b> ${smile}</p>
+        <p><b>Improve:</b> ${improve}</p>`;
+    }
+
+    // Chat Logic (Demo)
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const message = document.createElement("li");
+      message.textContent = "👤 " + input.value;
+      document.getElementById("chatBox").appendChild(message);
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
